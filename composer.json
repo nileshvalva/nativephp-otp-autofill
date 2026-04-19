@@ -1,6 +1,6 @@
 {
     "name": "nileshvalva/nativephp-otp-autofill",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Automatically detects and fills OTP codes from incoming SMS messages on Android and iOS",
     "type": "nativephp-plugin",
     "license": "MIT",
