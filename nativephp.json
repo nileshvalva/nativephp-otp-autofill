@@ -1,0 +1,81 @@
+{
+    "name": "nileshvalva/nativephp-otp-autofill",
+    "version": "1.0.0",
+    "description": "Automatically detects and fills OTP codes from incoming SMS messages on Android and iOS",
+    "namespace": "OtpAutofill",
+    "keywords": ["otp", "sms", "autofill", "authentication"],
+    "category": "utilities",
+    "license": "MIT",
+    "pricing": {
+        "type": "free"
+    },
+    "author": {
+        "name": "Nilesh Valva",
+        "email": "info@nileshvalva.in",
+        "url": "nileshvalva.in"
+    },
+    "platforms": ["android", "ios"],
+    "bridge_functions": [
+        {
+            "name": "OtpAutofill.StartListening",
+            "android": "com.nativephp.plugins.otp_autofill.OtpAutofillFunctions.StartListening",
+            "ios": "OtpAutofillFunctions.StartListening",
+            "description": "Start listening for incoming OTP SMS"
+        },
+        {
+            "name": "OtpAutofill.StopListening",
+            "android": "com.nativephp.plugins.otp_autofill.OtpAutofillFunctions.StopListening",
+            "ios": "OtpAutofillFunctions.StopListening",
+            "description": "Stop listening for OTP SMS"
+        },
+        {
+            "name": "OtpAutofill.GetStatus",
+            "android": "com.nativephp.plugins.otp_autofill.OtpAutofillFunctions.GetStatus",
+            "ios": "OtpAutofillFunctions.GetStatus",
+            "description": "Get current listener status"
+        }
+    ],
+    "android": {
+        "min_version": 21,
+        "permissions": [
+            "android.permission.RECEIVE_SMS",
+            "android.permission.READ_SMS"
+        ],
+        "receivers": [
+            {
+                "name": "com.nativephp.plugins.otp_autofill.SmsReceiver",
+                "exported": false,
+                "actions": ["android.provider.Telephony.SMS_RECEIVED"]
+            }
+        ],
+        "dependencies": {
+            "implementation": [
+                "com.google.android.gms:play-services-auth:21.0.0",
+                "com.google.android.gms:play-services-auth-api-phone:18.0.2"
+            ]
+        },
+        "repositories": [],
+        "activities": [],
+        "services": [],
+        "providers": []
+    },
+    "ios": {
+        "min_version": "15.0",
+        "info_plist": {
+            "NSUserNotificationUsageDescription": "Used to detect OTP from SMS",
+            "NSPasteboardUsageDescription": "Used to detect OTP codes copied from SMS messages"
+        },
+        "dependencies": {
+            "swift_packages": [],
+            "pods": []
+        }
+    },
+    "events": [
+        "Nativephp\\OtpAutofill\\Events\\OtpReceived",
+        "Nativephp\\OtpAutofill\\Events\\OtpAutofillCompleted"
+    ],
+    "service_provider": "Nativephp\\OtpAutofill\\OtpAutofillServiceProvider",
+    "hooks": {
+        "copy_assets": "nativephp:otp-autofill:copy-assets"
+    }
+}
