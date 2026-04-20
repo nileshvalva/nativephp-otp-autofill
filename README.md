@@ -126,15 +126,12 @@ xcrun simctl pbcopy booted "Your OTP is 847291. Valid for 10 minutes."
 
 ## Changelog
 
-### v1.0.1
-- Fixed native code directory structure
-- Added iOS clipboard watcher
-- Added iOS system AutoFill support
-
-### v1.0.0
-- Initial release
-- Android SMS BroadcastReceiver
-- OTP extraction with regex
+### v1.0.1 — Initial Release
+- Android SMS detection via BroadcastReceiver
+- iOS clipboard watcher support
+- iOS system AutoFill support
+- OTP extraction with regex (4–8 digits)
+- Fires `OtpReceived` event to Laravel
 
 ## Author
 
